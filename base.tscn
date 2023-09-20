@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8x7bxlho0vo8"]
+
+[ext_resource type="Script" path="res://Code/BaseController.cs" id="1_br6bt"]
+[ext_resource type="Texture2D" uid="uid://consff4xiqrcj" path="res://Assets/Base(Temp)/pink_icon.png" id="1_jgfo3"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Controller" type="Node2D" parent="."]
+script = ExtResource("1_br6bt")
+
+[node name="Character" type="Sprite2D" parent="Controller"]
+position = Vector2(-1.00003, -7.00003)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_jgfo3")
