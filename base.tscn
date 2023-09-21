@@ -1,14 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8x7bxlho0vo8"]
+[gd_scene load_steps=5 format=3 uid="uid://b8x7bxlho0vo8"]
 
 [ext_resource type="Script" path="res://Code/BaseController.cs" id="1_br6bt"]
 [ext_resource type="Texture2D" uid="uid://consff4xiqrcj" path="res://Assets/Base(Temp)/pink_icon.png" id="1_jgfo3"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1vi5e"]
+vertices = PackedVector2Array(-196, 568, -458, -305, 25, -225, 260, 161, 1150, 17, 1165, 657, 927, 635, 870, 506, 728, 125, 31, -535, -423, -639, -362, -887, 44, -823, 306, -564, -3, 652, -7, 536, 575, -268)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(9, 10, 11, 12, 13), PackedInt32Array(14, 15, 7, 6), PackedInt32Array(16, 4, 8, 3, 2), PackedInt32Array(13, 16, 2, 9)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(575, -268, 1150, 17, 1165, 657, 927, 635, -3, 652, -7, 536, 870, 506, 728, 125, 260, 161, -196, 568, -458, -305, 25, -225, 31, -535, -423, -639, -362, -887, 44, -823, 306, -564)])
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c2wbe"]
+
 [node name="Node2D" type="Node2D"]
+
+[node name="Navigation" type="Node2D" parent="."]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Navigation"]
+navigation_polygon = SubResource("NavigationPolygon_1vi5e")
 
 [node name="Controller" type="Node2D" parent="."]
 script = ExtResource("1_br6bt")
 
-[node name="Character" type="Sprite2D" parent="Controller"]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Controller"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller/CharacterBody2D"]
+shape = SubResource("CircleShape2D_c2wbe")
+
+[node name="Character" type="Sprite2D" parent="Controller/CharacterBody2D"]
 position = Vector2(-1.00003, -7.00003)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_jgfo3")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Controller/CharacterBody2D"]
